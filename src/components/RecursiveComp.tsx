@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { IFile } from "../interfaces";
-import FileIcon from "./SVG/File"
-import FolderIcon from "./SVG/Folder";
+import RightArrowIcon from "./SVG/rArrow";
+import BottomArrowIcon from "./SVG/bArrow";
+import FileIcon from "./FileIcon";
 
 interface IProps {
     fileTree: IFile;
@@ -8,18 +10,32 @@ interface IProps {
 
 const RecursiveComp = ({fileTree: {name, isFolder, children}}: IProps) => {
 
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const toggle = () => setIsOpen(prev => !prev)
   return (
     <div className="mb-2 ml-2 cursor-pointer">
     <div className="flex items-center mb-1">
-        <span className="mr-2">
-            {isFolder ? <FolderIcon /> : <FileIcon />}
-        </span>
+            {isFolder ? 
+              <div className="flex items-center" onClick={toggle}>
+                {isOpen ? 
+                  <BottomArrowIcon /> 
+                  : 
+                  <RightArrowIcon />
+                }
+                <FileIcon filename={name} />
+              </div>
+              : 
+              <span className="mr-2">
+                <FileIcon filename={name} />
+              </span>
+          }
         <span>
             {name}
         </span>
     </div>
 
-        {
+        {isOpen &&
           children && children.map((child, index) => {
             return (
               <div key={index}>
