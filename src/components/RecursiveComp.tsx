@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IFile } from "../interfaces";
 import RightArrowIcon from "./SVG/rArrow";
 import BottomArrowIcon from "./SVG/bArrow";
-import FileIcon from "./FileIcon";
+import RenderFileIcon from "./FileIcon";
 
 interface IProps {
     fileTree: IFile;
@@ -14,7 +14,7 @@ const RecursiveComp = ({fileTree: {name, isFolder, children}}: IProps) => {
 
   const toggle = () => setIsOpen(prev => !prev)
   return (
-    <div className="mb-2 ml-2 cursor-pointer">
+    <div className="mb-2 ml-3 cursor-pointer">
     <div className="flex items-center mb-1">
             {isFolder ? 
               <div className="flex items-center" onClick={toggle}>
@@ -23,16 +23,21 @@ const RecursiveComp = ({fileTree: {name, isFolder, children}}: IProps) => {
                   : 
                   <RightArrowIcon />
                 }
-                <FileIcon filename={name} isFolder isOpen={isOpen}/>
+                <RenderFileIcon filename={name} isFolder isOpen={isOpen}/>
+                <span className="select-none">
+                    {name}
+                </span>
               </div>
               : 
-              <span className="mr-2">
-                <FileIcon filename={name} />
+              <span className="flex items-center">
+                <RenderFileIcon filename={name} />
+                <span className="select-none">
+                    {name}
+                </span>
               </span>
+              
           }
-        <span>
-            {name}
-        </span>
+
     </div>
 
         {isOpen &&

@@ -1,4 +1,5 @@
 import IconImg from "./IconImg";
+import FileIcon from "./SVG/File";
 
 interface IProps {
     filename: string;
@@ -6,26 +7,41 @@ interface IProps {
     isOpen?: boolean;
 }
 
-const FileIcon = ({filename, isFolder, isOpen}: IProps) => {
-    const extention = filename.split('.').pop()
-
-    // files
-    if (extention === '.tsx') return <IconImg src="/icons/react_ts.svg" />
-    if (extention === '.jsx') return <IconImg src="/icons/react.svg" />
-    if (extention === '.json') return <IconImg src="/icons/json.svg" />
-    if (extention === '.html') return <IconImg src="/icons/html.svg" />
-    
-
-    // folders
-    if(extention === "node_modules" && isFolder)
-        return isOpen ? <IconImg src="/icons/folder-node_open.svg" /> : <IconImg src="/icons/folder-node.svg" />
-    if(extention === "public" && isFolder)
-        return isOpen ? <IconImg src="/icons/folder-public_open.svg" /> : <IconImg src="/icons/folder-public.svg" />
-    if(extention === "src" && isFolder)
-        return isOpen ? <IconImg src="/icons/folder-src_open.svg" /> : <IconImg src="/icons/folder-src.svg" />
-
-    if(isFolder) return isOpen ? <IconImg src="/icons/folder-default-open.svg" /> : <IconImg src="/icons/folder-default.svg" />
-
+const extensionIconPaths: Record<string, string> = {
+    tsx: "/icons/react_ts",
+    jsx: "/icons/react",
+    json: "/icons/json",
+    html: "/icons/html",
+    css: "/icons/css",
+    js: "/icons/javascript",
+    ts: "/icons/typescript",
+    png: "/icons/image",
+    jpg: "/icons/image",
+    gif: "/icons/image",
+    node_modules: "/icons/folder-node",
+    public: "/icons/folder-public",
+    src: "/icons/folder-src",
+    folder: "/icons/folder-default",
+    ico: "/icons/favicon",
 }
 
-export default FileIcon
+const RenderFileIcon = ({filename, isFolder, isOpen}: IProps) => {
+    const extension = filename.split(".").pop();
+
+    if (extension && Object.prototype.hasOwnProperty.call(extensionIconPaths, extension)) {
+      const iconPath = isFolder
+        ? isOpen
+          ? `${extensionIconPaths[extension]}-open.svg`
+          : `${extensionIconPaths[extension]}.svg`
+        : `${extensionIconPaths[extension]}.svg`;
+  
+      return <IconImg src={iconPath} />;
+    }
+  
+    if (isFolder && isOpen) return <IconImg src="/icons/folder-default-open.svg" />;
+    if (isFolder && !isOpen) return <IconImg src="/icons/folder-default.svg" />;
+  
+    return <FileIcon />;
+}
+
+export default RenderFileIcon;
