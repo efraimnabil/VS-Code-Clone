@@ -23,7 +23,7 @@ const RecursiveComp = ({fileTree: {name, isFolder, children}}: IProps) => {
                   : 
                   <RightArrowIcon />
                 }
-                <FileIcon filename={name} />
+                <FileIcon filename={name} isFolder isOpen={isOpen}/>
               </div>
               : 
               <span className="mr-2">
