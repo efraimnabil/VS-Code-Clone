@@ -11,7 +11,7 @@ const OpenedFilesBar = ({}: IProps) => {
   return (
     <div className="flex items-center">
         <ul>
-            {openedFiles.map((file, index) => {
+            {openedFiles.map((file) => {
             return (
                 <ObenedFileBarTab key={file.id} file={file} />
                 )
