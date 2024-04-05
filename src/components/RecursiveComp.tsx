@@ -5,7 +5,7 @@ import BottomArrowIcon from "./SVG/bArrow";
 import RenderFileIcon from "./FileIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import { setOpenedFiles } from "../app/features/FileTreeSlice";
+import { setClickedFile, setOpenedFiles } from "../app/features/FileTreeSlice";
 import { doesFileObjExist } from "../utils/functions";
 
 interface IProps {
@@ -21,9 +21,13 @@ const RecursiveComp = ({fileTree}: IProps) => {
 
   const onFileClick = () => {
     const exist = doesFileObjExist(openedFiles, id)
+    dispatch(setClickedFile({
+      filename: name,
+      fileContent: "",
+      activeFile: id
+    }))
     if (exist) return;
     dispatch(setOpenedFiles([...openedFiles, fileTree]))
-    
   }
   return (
     <div className="mb-2 ml-3 cursor-pointer">

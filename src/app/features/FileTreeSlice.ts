@@ -4,6 +4,7 @@ import { IFile } from "../../interfaces";
 interface IClickedFile {
     filename: string;
     fileContent: string | undefined;
+    activeFile: string | null;
 }
 
 interface IInitialState {
@@ -14,6 +15,7 @@ interface IInitialState {
 const initialState: IInitialState = {
     openedFiles: [],
     clickedFile: {
+        activeFile: null,
         filename: "",
         fileContent: "",
     }
@@ -28,7 +30,7 @@ export const fileTreeSlice = createSlice({
         },
         setClickedFile: (state, action: PayloadAction<IClickedFile>) => {
             state.clickedFile = action.payload
-        }
+        },
     }
 })
 
