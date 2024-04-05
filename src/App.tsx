@@ -6,9 +6,13 @@ import { fileTree } from "./data/fileTree"
 function App() {
 
   return (
-    <div className="m-4">
-        <RecursiveComp fileTree={fileTree} />
-        <OpenedFilesBar />
+    <div>
+      <div className="flex h-screen">
+        <div className="w-64 border-r border-gray-200">
+          <RecursiveComp fileTree={fileTree} />
+        </div>
+          <OpenedFilesBar />
+      </div>
     </div>
   )
 }
