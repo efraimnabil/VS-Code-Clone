@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const RecursiveComp = ({fileTree}: IProps) => {
-  const {name, isFolder, children, id} = fileTree
+  const {name, isFolder, children, id, content} = fileTree
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const {openedFiles} = useSelector((state: RootState) => state.tree)
@@ -23,7 +23,7 @@ const RecursiveComp = ({fileTree}: IProps) => {
     const exist = doesFileObjExist(openedFiles, id)
     dispatch(setClickedFile({
       filename: name,
-      fileContent: "",
+      fileContent: content,
       activeFile: id
     }))
     if (exist) return;
