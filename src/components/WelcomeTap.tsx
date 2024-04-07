@@ -1,11 +1,9 @@
-interface IProps {
+import IconImg from "./IconImg"
 
-}
-
-const WelcomeTap = ({}: IProps) => {
+const WelcomeTap = () => {
   return (
-    <div>
-        
+    <div className="flex items-center justify-center h-full">
+    <IconImg src="/icons/vscode.svg" className="w-64 h-64" />
     </div>
   )
 }
