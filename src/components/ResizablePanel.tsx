@@ -15,12 +15,21 @@ const ResizablePanel = ({defaultLayout = [33, 67], leftPanel, rightPanel, showLe
   return (
     <PanelGroup direction="horizontal" onLayout={onLayout} autoSaveId="condition">
       {showLeftPanel && <>
-        <Panel defaultSize={defaultLayout[0]}>{leftPanel}</Panel>
+        <Panel 
+          defaultSize={defaultLayout[0]}
+        >
+            {leftPanel}
+          </Panel>
       
         <PanelResizeHandle className="border-r-2 border-[#ffffff1f]" />
       </>
       }
-      <Panel defaultSize={defaultLayout[1]}>{rightPanel}</Panel>
+      <Panel
+       defaultSize={defaultLayout[1]}
+       minSize={40}
+      >
+        {rightPanel}
+      </Panel>
     </PanelGroup>
   )
 }
