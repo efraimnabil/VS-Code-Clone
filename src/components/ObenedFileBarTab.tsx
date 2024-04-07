@@ -42,16 +42,17 @@ const ObenedFileBarTab = ({file}: IProps) => {
   }
   return (
     <div 
-      className="flex items-center p-2" 
+      className={`max-w-screen-md flex items-center p-2 border-t-2 ${
+        file.id === clickedFile.activeFile ? "border-[#cf6ccf]" : "border-transparent"
+      }`}
       onClick={onclick} 
-      style={{border: clickedFile.activeFile === file.id ? "2px solid red" : "2px solid transparent"}}
     > 
         <RenderFileIcon filename={file.name} />
         <span className="cursor-pointer duration-300 flex justify-center items-center w-fit mx-2 p-1 rounded-md">
             {file.name}
         </span>
         <span 
-          className="cursor-pointer duration-300 flex justify-center items-center w-fit mx-2 p-1 rounded-md hover:bg-red-500 hover:text-white"
+          className="cursor-pointer hover:bg-[#64646473] duration-300 flex justify-center items-center w-fit mr-2 p-1 rounded-md"
           onClick={(e) => {
             e.stopPropagation()
             onRemove(file.id)}
