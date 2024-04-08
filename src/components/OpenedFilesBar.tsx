@@ -11,7 +11,7 @@ interface IProps {
 const OpenedFilesBar = ({}: IProps) => {
   const [menuPosition, setMenuPosition] = useState({x: 0, y: 0})
   const [menuOpen, setMenuOpen] = useState(false)
-    const {openedFiles} = useSelector((state: RootState) => state.tree)
+  const {openedFiles} = useSelector((state: RootState) => state.tree)
   return (
     <div>
       <div className="flex items-center border-b border-gray-200"
@@ -20,6 +20,7 @@ const OpenedFilesBar = ({}: IProps) => {
                 e.preventDefault()
                 setMenuPosition({x: e.clientX, y: e.clientY})
                 setMenuOpen(!menuOpen)
+
               }
             }>
               {openedFiles.map((file) => {

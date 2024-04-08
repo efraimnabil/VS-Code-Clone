@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setOpenedFiles } from "../app/features/FileTreeSlice"
+import { RootState } from "../app/store"
 
 interface IProps {
     setMenuOpen: (arg: boolean) => void
@@ -14,7 +15,15 @@ const ContextMenu = ({positions, setMenuOpen}: IProps) => {
     const {x, y} = positions
     const menuRef = useRef<HTMLDivElement>(null)
     const dispatch = useDispatch()
-    const closeAll = () => {
+    const {openedFiles, tapIdToRemove} = useSelector((state: RootState) => state.tree)
+
+    const onClose = () => {
+        setMenuOpen(false)
+        const newFiles = openedFiles.filter((file) => file.id !== tapIdToRemove)
+        dispatch(setOpenedFiles(newFiles))
+    }
+
+    const onCloseAll = () => {
         setMenuOpen(false)
         dispatch(setOpenedFiles([]))
     }
@@ -43,7 +52,14 @@ const ContextMenu = ({positions, setMenuOpen}: IProps) => {
         >
             <li 
                 className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
-                onClick={closeAll}
+                onClick={onClose}
+            >
+                close
+            </li>
+
+            <li 
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
+                onClick={onCloseAll}
             >
                 close all
             </li>
