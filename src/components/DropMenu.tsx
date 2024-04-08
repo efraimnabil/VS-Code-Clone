@@ -8,7 +8,7 @@ interface IProps {
     }
 }
 
-const DropMenu = ({positions, setMenuOpen}: IProps) => {
+const ContextMenu = ({positions, setMenuOpen}: IProps) => {
     const {x, y} = positions
     const menuRef = useRef<HTMLDivElement>(null)
 
@@ -42,4 +42,4 @@ const DropMenu = ({positions, setMenuOpen}: IProps) => {
   )
 }
 
-export default DropMenu
+export default ContextMenu

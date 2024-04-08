@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../app/store"
 import ObenedFileBarTab from "./ObenedFileBarTab"
 import { useState } from "react"
-import DropMenu from "./DropMenu"
+import ContextMenu from "./DropMenu"
 
 interface IProps {
 
@@ -28,7 +28,7 @@ const OpenedFilesBar = ({}: IProps) => {
                   )
               })}
       </div>
-      {menuOpen && <DropMenu positions={menuPosition} setMenuOpen={setMenuOpen} />}
+      {menuOpen && <ContextMenu positions={menuPosition} setMenuOpen={setMenuOpen} />}
 
     </div>
   )
