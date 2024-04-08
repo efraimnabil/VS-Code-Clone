@@ -14,12 +14,14 @@ function App() {
         <ResizablePanel 
           showLeftPanel
           leftPanel={
-            <div className="w-64 p-2">
+            <div className="h-full rounded-3xl p-2 my-2 ml-2 bg-[#192230]">
               <RecursiveComp fileTree={fileTree} />
             </div>
           }
           rightPanel={
-            openedFiles.length ? <Preview /> : <WelcomeTap />
+            <div className="h-full rounded-3xl my-2 mr-2 p-2 bg-[#192230]">
+              {openedFiles.length ? <Preview /> : <WelcomeTap />}
+            </div>
           }
         />
       </div>

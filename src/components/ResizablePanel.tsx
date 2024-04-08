@@ -21,7 +21,7 @@ const ResizablePanel = ({defaultLayout = [33, 67], leftPanel, rightPanel, showLe
             {leftPanel}
           </Panel>
       
-        <PanelResizeHandle className="border-r-2 border-[#ffffff1f]" />
+        <PanelResizeHandle className="w-2" />
       </>
       }
       <Panel

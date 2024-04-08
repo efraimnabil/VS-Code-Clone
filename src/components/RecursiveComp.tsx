@@ -31,31 +31,31 @@ const RecursiveComp = ({fileTree}: IProps) => {
   }
   return (
     <div className="mb-2 ml-2 cursor-pointer">
-    <div className="flex items-center mb-1.5">
-            {isFolder ? 
-              <div className="flex items-center" onClick={toggle}>
-                <span className="mr-2 select-none">
-                  {isOpen ? 
-                    <BottomArrowIcon /> 
-                    : 
-                    <RightArrowIcon />
-                  }
-                </span>
-                <RenderFileIcon filename={name} isFolder isOpen={isOpen}/>
-                <span className="ml-2 select-none">
-                    {name}
-                </span>
-              </div>
-              : 
-              <div className="flex items-center ml-2" onClick={onFileClick}>
-                <RenderFileIcon filename={name} />
-                <span className="ml-2 select-none">
-                    {name}
-                </span>
-              </div>
-          }
+      <div className="flex items-center mb-1.5">
+              {isFolder ? 
+                <div className="flex items-center" onClick={toggle}>
+                  <span className="mr-2 select-none">
+                    {isOpen ? 
+                      <BottomArrowIcon /> 
+                      : 
+                      <RightArrowIcon />
+                    }
+                  </span>
+                  <RenderFileIcon filename={name} isFolder isOpen={isOpen}/>
+                  <span className="ml-2 select-none">
+                      {name}
+                  </span>
+                </div>
+                : 
+                <div className="flex items-center ml-2" onClick={onFileClick}>
+                  <RenderFileIcon filename={name} />
+                  <span className="ml-2 select-none">
+                      {name}
+                  </span>
+                </div>
+            }
 
-    </div>
+      </div>
 
         {isOpen &&
           children && children.map((child, index) => {
