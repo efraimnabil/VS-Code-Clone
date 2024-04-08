@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../app/store"
 import ObenedFileBarTab from "./ObenedFileBarTab"
 import { useState } from "react"
-import ContextMenu from "./DropMenu"
+import ContextMenu from "./ContextMenu"
 
 interface IProps {
 

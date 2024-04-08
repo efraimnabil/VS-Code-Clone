@@ -1,4 +1,6 @@
 import { useRef, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { setOpenedFiles } from "../app/features/FileTreeSlice"
 
 interface IProps {
     setMenuOpen: (arg: boolean) => void
@@ -11,6 +13,11 @@ interface IProps {
 const ContextMenu = ({positions, setMenuOpen}: IProps) => {
     const {x, y} = positions
     const menuRef = useRef<HTMLDivElement>(null)
+    const dispatch = useDispatch()
+    const closeAll = () => {
+        setMenuOpen(false)
+        dispatch(setOpenedFiles([]))
+    }
 
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
@@ -34,7 +41,10 @@ const ContextMenu = ({positions, setMenuOpen}: IProps) => {
                 left: x
             }}
         >
-            <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800">
+            <li 
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
+                onClick={closeAll}
+            >
                 close all
             </li>
         </ul>
