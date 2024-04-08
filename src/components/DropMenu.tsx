@@ -22,8 +22,8 @@ const DropMenu = ({positions, setMenuOpen}: IProps) => {
         return () => {
             document.removeEventListener("click", handleClick)
         }
-    }, [])
-    
+    }, [setMenuOpen])
+
   return (
     <div ref={menuRef}>
         <ul 

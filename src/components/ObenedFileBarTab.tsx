@@ -4,7 +4,6 @@ import RenderFileIcon from "./FileIcon";
 import CloseIcon from "./SVG/CloseIcon";
 import { setClickedFile, setOpenedFiles } from "../app/features/FileTreeSlice";
 import { RootState } from "../app/store";
-import DropMenu from "./DropMenu";
 
 interface IProps {
     file: IFile;
