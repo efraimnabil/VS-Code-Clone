@@ -4,12 +4,14 @@ import RenderFileIcon from "./FileIcon";
 import CloseIcon from "./SVG/CloseIcon";
 import { setClickedFile, setOpenedFiles } from "../app/features/FileTreeSlice";
 import { RootState } from "../app/store";
+import DropMenu from "./DropMenu";
 
 interface IProps {
     file: IFile;
 }
 
 const ObenedFileBarTab = ({file}: IProps) => {
+
   const dispatch = useDispatch()
   const {clickedFile, openedFiles} = useSelector((state: RootState) => state.tree)
 
@@ -46,6 +48,7 @@ const ObenedFileBarTab = ({file}: IProps) => {
         file.id === clickedFile.activeFile ? "border-[#cf6ccf]" : "border-transparent"
       }`}
       onClick={onclick} 
+
     > 
         <RenderFileIcon filename={file.name} />
         <span className="cursor-pointer duration-300 flex justify-center items-center w-fit mx-2 p-1 rounded-md">
@@ -60,6 +63,7 @@ const ObenedFileBarTab = ({file}: IProps) => {
         >
            <CloseIcon />
         </span>
+
     </div>
   )
 }
