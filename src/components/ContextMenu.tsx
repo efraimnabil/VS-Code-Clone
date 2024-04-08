@@ -23,9 +23,22 @@ const ContextMenu = ({positions, setMenuOpen}: IProps) => {
         dispatch(setOpenedFiles(newFiles))
     }
 
+    const onCloseOthers = () => {
+        setMenuOpen(false)
+        const newFiles = openedFiles.filter((file) => file.id === tapIdToRemove)
+        dispatch(setOpenedFiles(newFiles))
+    }
+
     const onCloseAll = () => {
         setMenuOpen(false)
         dispatch(setOpenedFiles([]))
+    }
+
+    const onClosetoRight = () => {
+        setMenuOpen(false)
+        const index = openedFiles.findIndex((file) => file.id === tapIdToRemove)
+        const newFiles = openedFiles.slice(0, index + 1)
+        dispatch(setOpenedFiles(newFiles))
     }
 
     useEffect(() => {
@@ -56,13 +69,38 @@ const ContextMenu = ({positions, setMenuOpen}: IProps) => {
             >
                 close
             </li>
-
+            <li
+                className="border-t border-gray-200"
+            >
+            </li>
+            <li 
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
+                onClick={onCloseOthers}
+            >
+                close others
+            </li>
+            <li
+                className="border-t border-gray-200"
+            >
+            </li>
+            <li 
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
+                onClick={onClosetoRight}
+            >
+                close all to the right
+            </li>
+            <li
+                className="border-t border-gray-200"
+            >
+            </li>
+            
             <li 
                 className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-gray-800"
                 onClick={onCloseAll}
             >
                 close all
             </li>
+            
         </ul>
     </div>
   )

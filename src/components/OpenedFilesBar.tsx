@@ -19,7 +19,7 @@ const OpenedFilesBar = ({}: IProps) => {
               {
                 e.preventDefault()
                 setMenuPosition({x: e.clientX, y: e.clientY})
-                setMenuOpen(!menuOpen)
+                setMenuOpen(true)
 
               }
             }>
